@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import AuthService from './AuthService';
+import AuthService from '../services/AuthService';
 import 'bootstrap/dist/css/bootstrap.css';
 import './RegistrationPage.css';
 
@@ -18,8 +18,10 @@ class RegistrationPage extends Component {
       pass: '',
       email: '',
     }
+
     this.auth = new AuthService();
   }
+
   singUp(e) {
     e.preventDefault();
     isRegistering = true;
@@ -38,11 +40,13 @@ class RegistrationPage extends Component {
         this.setState({});
       })
   }
+
   regErr() {
-    if (isEmailErr) { return <div className="padTwoEm"><span className="error">email already exist</span></div> };
+    if (isEmailErr) return <div className="padTwoEm"><span className="error">email already exist</span></div>;
     if (isLoginErr) return <div className="padTwoEm"><span className="error">login already exist</span></div>;
     if (isPassErr) return <div className="padTwoEm"><span className="error">password is too short, minimum 8 symbols</span></div>;
   }
+
   render() {
     if (this.auth.loggedIn()) return <Redirect to="/" />
     else {
@@ -104,6 +108,7 @@ class RegistrationPage extends Component {
           </div>
         );
       }
+
       return <div className="mainPage">
         <img className="loader" width="5%" src="http://www.myiconfinder.com/uploads/iconsets/256-256-d99178409b6b75afc4ba4785ccf4f2ba-loading.png" alt="loader" />
       </div>

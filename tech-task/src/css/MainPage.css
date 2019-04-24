@@ -1,4 +1,4 @@
-.mainPage{
+.mainPage {
     width: 100vw;
     height: 100vh;
     position: relative;
@@ -9,21 +9,25 @@
     align-items: center;
     overflow: hidden;
 }
-.userCard{
+
+.userCard {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     width: 100%;
     background-color: #eee;
 }
-.loader{
+
+.loader {
     animation: loader 0.8s linear infinite;
 }
-@keyframes loader{
-    0%{
+
+@keyframes loader {
+    0% {
         transform: rotateZ(0deg);
     }
-    100%{
+    
+    100% {
         transform: rotateZ(360deg);
     }
 }

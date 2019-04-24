@@ -5,9 +5,11 @@ var CREDENTIALS = {
     authKey: 'Nza5QLtJgXb29Yv',
     authSecret: '9nRQYVvGeyNbPxK'
 };
+
 var CONFIG = {
     debug: { mode: 1 } // enable DEBUG mode (mode 0 is logs off, mode 1 -> console.log())
 };
+
 ConnectyCube.init(CREDENTIALS, CONFIG);
 
 var express = require('express');
@@ -57,7 +59,7 @@ router.route('/login')
 router.route('/get-user')
     .post(function (req, res) {
         ConnectyCube.createSession(CREDENTIALS, function (error, session) {
-            console.log("IDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD",req.body.id)
+            console.log("IDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD", req.body.id)
             var searchParams = { filter: { field: 'id', param: 'in', value: req.body.id } };
 
             ConnectyCube.users.get(searchParams, function (error, result) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import AuthService from './AuthService';
+import AuthService from '../services/AuthService';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import './MainPage.css';
@@ -11,8 +11,10 @@ class MainPage extends Component {
         this.state = {
             data: [],
         }
+
         this.auth = new AuthService();
     }
+
     componentDidMount() {
         let id = window.localStorage.getItem('user_id') || "";
         axios.post(`http://localhost:4000/api/get-user`, {
@@ -24,6 +26,7 @@ class MainPage extends Component {
                 })
             })
     }
+
     getDate() {
         if (this.state.data.created_at) {
             let date = this.state.data.created_at.replace('T', ' at ');
@@ -32,12 +35,13 @@ class MainPage extends Component {
         }
         return null;
     }
+
     render() {
-        while(!this.state.data.login){
+        while (!this.state.data.login) {
             return <div className="mainPage">
-              <img className="loader" width="5%" src="http://www.myiconfinder.com/uploads/iconsets/256-256-d99178409b6b75afc4ba4785ccf4f2ba-loading.png" alt="loader"/>
+                <img className="loader" width="5%" src="http://www.myiconfinder.com/uploads/iconsets/256-256-d99178409b6b75afc4ba4785ccf4f2ba-loading.png" alt="loader" />
             </div>
-          }
+        }
         if (!this.auth.loggedIn()) return <Redirect to="/login" />
         else {
             return (

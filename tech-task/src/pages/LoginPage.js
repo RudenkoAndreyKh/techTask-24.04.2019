@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom'
-import AuthService from './AuthService';
+import AuthService from '../services/AuthService';
 import 'bootstrap/dist/css/bootstrap.css';
 import './LoginPage.css';
 
@@ -15,8 +15,10 @@ class LoginPage extends Component {
       pass: '',
       email: '',
     }
+
     this.auth = new AuthService();
   }
+
   login(e) {
     e.preventDefault();
     isLoggining = true;
@@ -31,13 +33,15 @@ class LoginPage extends Component {
         }
       })
   }
+
   loginErr() {
     if (isError) { return <div className="padTwoEm"><span className="error">wrong email or password</span></div> };
   }
+
   render() {
     if (this.auth.loggedIn()) return <Redirect to="/" />
     else {
-      while(!isLoggining){
+      while (!isLoggining) {
         return (
           <div className="loginPage">
             <div className="errorBlock col-sm-4">
@@ -64,9 +68,10 @@ class LoginPage extends Component {
           </div>
         );
       }
+      
       return <div className="mainPage">
-      <img className="loader" width="5%" src="http://www.myiconfinder.com/uploads/iconsets/256-256-d99178409b6b75afc4ba4785ccf4f2ba-loading.png" alt="loader"/>
-    </div>
+        <img className="loader" width="5%" src="http://www.myiconfinder.com/uploads/iconsets/256-256-d99178409b6b75afc4ba4785ccf4f2ba-loading.png" alt="loader" />
+      </div>
     }
   }
 }
